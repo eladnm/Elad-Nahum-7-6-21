@@ -7,21 +7,21 @@ const apiKey2 = "hdudMoQeprgNRw9T3QbEanWXibbEu3UG";
 const apiKey = "koz4s5ycX3BbiUMHGC9M42QqolVSb6iq";
 export default {
   getData(key: string) {
-    // return fetch(
-    //   "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" +
-    //     key +
-    //     "?" +
-    //     "&apikey=" +
-    //     apiKey +
-    //     "&details=true&metric=true",
-    //   options
-    // );
     return fetch(
-      "data4.json?" +
+      "https://dataservice.accuweather.com/forecasts/v1/daily/5day/" +
         key +
-        "&apikey=VaG6iEAO4pgeTBriYEEsqMzYMOtnVEoA&details=true&metric=true",
+        "?" +
+        "&apikey=" +
+        apiKey +
+        "&details=true&metric=true",
       options
     );
+    // return fetch(
+    //   "data4.json?" +
+    //     key +
+    //     "&apikey=VaG6iEAO4pgeTBriYEEsqMzYMOtnVEoA&details=true&metric=true",
+    //   options
+    // );
    },
   getCurrentCondition(key: string) {
     return fetch(
