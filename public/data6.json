@@ -1,0 +1,15 @@
+{
+    "Version": 1,
+    "Key": "127164",
+    "Type": "City",
+    "Rank": 10,
+    "LocalizedName": "Cairo",
+    "Country": {
+        "ID": "EG",
+        "LocalizedName": "Egypt"
+    },
+    "AdministrativeArea": {
+        "ID": "C",
+        "LocalizedName": "Cairo"
+    }
+}
