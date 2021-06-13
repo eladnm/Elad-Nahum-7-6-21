@@ -48,6 +48,7 @@ export default class Current extends Vue {
   @Getter readonly isInFavorites!: (key: string) => boolean;
 
   @Action public toggleFavorite!: (key: string) => void;
+
 }
 </script>
 

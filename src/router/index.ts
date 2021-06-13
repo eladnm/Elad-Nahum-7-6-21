@@ -7,7 +7,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Home",
-    component: () => import(/* webpackChunkName: "home" */ "@/views/Home.vue"), //dynamic import of component and dependency
+    component: () => import(/* webpackChunkName: "home" */ "@/pages/Home.vue"), //dynamic import of component and dependency
   },
   {
     path: "/favorites",

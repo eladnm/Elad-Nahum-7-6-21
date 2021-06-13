@@ -3,8 +3,8 @@ const options: RequestInit = {
   mode: "cors",
   redirect: "follow",
 };
-const apiKey2 = "hdudMoQeprgNRw9T3QbEanWXibbEu3UG";
-const apiKey = "koz4s5ycX3BbiUMHGC9M42QqolVSb6iq";
+const apiKey = "hdudMoQeprgNRw9T3QbEanWXibbEu3UG";
+const apiKey2 = "koz4s5ycX3BbiUMHGC9M42QqolVSb6iq";
 export default {
   getData(key: string) {
     return fetch(

@@ -48,7 +48,7 @@ const defaultLocation: Partial<City> = {
   name: "Dashboard",
   components: { Current, Forcasts },
 })
-export default class HelloWorld extends Vue {
+export default class Dashboard extends Vue {
   private isLoading = false;
   public search: string | null | undefined = null;
   public entries: Array<any> = [];
@@ -57,9 +57,13 @@ export default class HelloWorld extends Vue {
   public model: Record<string, any> | null = null;
 
   @State public cityData!: CityData;
+  //this.$store.state.cityData
   @State public currentCondition!: CurrentCondition;
   @State public city?: City;
   @State public triedToLocate!: boolean;
+  @Action public setCurrentCity!: (key: City) => void;
+  @Action public loadCity!: (key: City | undefined) => void;
+
   get forcasts(): ForcastItem[] {
     return this.cityData ? this.cityData.DailyForecasts : [];
   }
@@ -69,7 +73,6 @@ export default class HelloWorld extends Vue {
       this.currentCondition && Object.keys(this.currentCondition).length > 0
     );
   }
-
   @Watch("search")
   searchChanged(newVal: string) {
     // Items have already been loaded
@@ -101,6 +104,7 @@ export default class HelloWorld extends Vue {
 
   mounted() {
     if (!this.isEmpty(this.city)) {
+      //this.loadCity(this.city);
       this.$store.dispatch("loadCity", this.city);
     }
   }
@@ -109,22 +113,24 @@ export default class HelloWorld extends Vue {
     if (!this.triedToLocate) {
       this.$store.dispatch("getCurrentLocation").then(() => {
         if (this.isEmpty(this.city)) {
+          //this.loadCity(this.city);
           this.$store.dispatch("loadCity", defaultLocation);
         }
       });
     }
   }
-
   @Watch("model")
-  modelChanged(newValue: string) {
+  modelChanged(newValue: City) {
     if (newValue) {
-      this.$store.dispatch("setCurrentCity", newValue);
+      this.setCurrentCity(newValue);
     }
   }
 
   @Watch("city")
   cityChange(newValue: City) {
-    if (!this.isEmpty(newValue)) this.$store.dispatch("loadCity", newValue);
+    if (!this.isEmpty(newValue)) this.loadCity(newValue);
+
+    //this.$store.dispatch("loadCity", newValue);
   }
 }
 </script>

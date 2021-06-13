@@ -24,7 +24,7 @@
 import { City, CurrentCondition } from "@/utils/type";
 import { Component, Prop, Vue } from "@/utils/vue-imports";
 import api from "@/api";
-import { State } from "vuex-class";
+import { Action, State } from "vuex-class";
 import { calculate } from "@/utils";
 
 @Component({
@@ -35,6 +35,8 @@ export default class FavoriteRow extends Vue {
   private condition: CurrentCondition = {} as CurrentCondition;
   public loading = false;
   @State readonly unit!: string;
+  @Action public setCurrentCity!: (key:City) => Promise<any>;
+
   get temp() {
     if (!this.condition || Object.keys(this.condition).length === 0) return "";
     return calculate(this.condition.Temperature.Metric.Value, this.unit);
@@ -53,7 +55,7 @@ export default class FavoriteRow extends Vue {
   }
 
   goToCity() {
-    this.$store.dispatch("setCurrentCity", this.city).then(() => {
+    this.setCurrentCity(this.city).then(() => {
       this.$router.push("/");
     });
   }
